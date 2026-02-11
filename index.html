@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>تقرير الموضوع الأول | دعم طلبة من الأشخاص ذوي الإعاقة - جامعة الملك فيصل</title>
+<style>
+  :root{
+    --bg: #0b1220;
+    --card: rgba(255,255,255,.08);
+    --text: #e8eefc;
+    --muted: rgba(232,238,252,.72);
+    --line: rgba(255,255,255,.14);
+    --shadow: 0 18px 60px rgba(0,0,0,.35);
+    --radius: 18px;
+    --tap: 48px;
+    --max: 1100px;
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans Arabic", "Noto Naskh Arabic", sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:var(--font);
+    color:var(--text);
+    background:
+      radial-gradient(1000px 600px at 15% 10%, rgba(112,173,71,.25), transparent 60%),
+      radial-gradient(900px 540px at 85% 20%, rgba(0,179,255,.22), transparent 60%),
+      radial-gradient(900px 700px at 50% 95%, rgba(255,255,255,.06), transparent 60%),
+      var(--bg);
+    min-height:100vh;
+  }
+  a{color:inherit}
+  .wrap{max-width:var(--max); margin:0 auto; padding:24px 16px 56px}
+  .topbar{
+    display:flex; gap:12px; align-items:stretch; justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .brandCard{
+    flex:1;
+    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:14px 16px;
+    position:relative;
+    overflow:hidden;
+  }
+  .brandCard:before{
+    content:"";
+    position:absolute; inset:-40% -10% auto auto;
+    width:240px; height:240px; border-radius:50%;
+    background:radial-gradient(circle, rgba(112,173,71,.35), transparent 60%);
+    filter: blur(1px);
+  }
+  .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+  .kfuTag{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:8px 12px; border-radius:0;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.05);
+  }
+  .logoBubble{
+    width:128px; height:128px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    background:transparent;
+    border:none;
+    box-shadow:none;
+    border-radius:0;
+  }
+  .logoBubble img{
+    display:block;
+  }
+
+  h1{
+    margin:6px 0 0;
+    font-size:22px;
+    letter-spacing:.2px;
+  }
+  .subtitle{margin:8px 0 0; color:var(--muted); line-height:1.75}
+  .actions{
+    display:flex; flex-direction:column; gap:10px; min-width:220px;
+  }
+  .btn{
+    height:var(--tap);
+    border-radius:0;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);
+    color:var(--text);
+    font-weight:700;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    gap:10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.22);
+    transition:.18s transform ease, .18s background ease, .18s border ease;
+    user-select:none;
+  }
+  .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.22)}
+  .btn.primary{
+    background:linear-gradient(135deg, rgba(112,173,71,.35), rgba(0,179,255,.22));
+    border-color:rgba(255,255,255,.22);
+  }
+  .grid{display:grid; grid-template-columns: 1fr; gap:14px; margin-top:14px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 16px;
+    box-shadow:var(--shadow);
+  }
+  .card h2{margin:0 0 10px; font-size:16px; color:#ffffff}
+  .meta{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:10px;
+  }
+  .meta .m{
+    padding:10px 12px; border-radius:0;
+    background:rgba(255,255,255,.05);
+    border:1px dashed rgba(255,255,255,.18);
+  }
+  .m b{display:block; color:#fff; margin-bottom:4px}
+  .m span{color:var(--muted); line-height:1.65}
+  .sec p{margin:0; color:var(--muted); line-height:1.95}
+  ul{margin:10px 0 0; padding:0 18px 0 0; color:var(--muted); line-height:1.95}
+  li{margin:6px 0}
+  .two{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+  @media (max-width: 900px){ .two{grid-template-columns:1fr} .actions{min-width:100%} }
+  .note{
+    margin-top:10px; padding:10px 12px; border-radius:0;
+    background:rgba(0,179,255,.12);
+    border:1px solid rgba(0,179,255,.25);
+    color:#eaf7ff;
+    line-height:1.8;
+  }
+  .foot{
+    margin-top:18px;
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;
+    color:rgba(232,238,252,.65);
+    font-size:12px;
+  }
+
+  /* ===== PRINT / PDF OFFICIAL LAYOUT (different from screen) ===== */
+  @page { size: A4; margin: 14mm 12mm; }
+  @media print{
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #374151;
+      --line: #e5e7eb;
+      --shadow: none;
+    }
+    body{ background:#fff !important; color:var(--text) !important; }
+    .wrap{ padding:0 !important; max-width:none !important; }
+    .topbar, .actions, .note, .foot .hint, .screenOnly{ display:none !important; }
+    .card{ border:1px solid #e5e7eb; border-radius:0; padding:12px 12px; box-shadow:none; background:#fff; }
+    .card h2{ color:#0b1220; font-size:14px; }
+    .sec p, ul, .m span{ color:#111827; }
+    .meta .m{ background:#f9fafb; border:1px solid #e5e7eb; }
+    .printHeader{ display:block !important; }
+    .printHeader{
+      border-bottom:3px solid #002060;
+      padding-bottom:10px; margin-bottom:12px;
+    }
+    .phRow{display:flex; justify-content:space-between; gap:10px; align-items:flex-end}
+    .phBox{width:38%; font-size:10.5px; line-height:1.4}
+    .phMid{width:24%; text-align:center}
+    .badge{display:inline-block; padding:8px 10px; border-radius:0; border:1px solid #cbd5e1; color:#002060; font-weight:800}
+    .pTitle{margin:10px 0 0; text-align:center; font-weight:900; color:#002060; font-size:16px}
+    .pSub{margin:6px 0 0; text-align:center; font-weight:700; color:#111827; font-size:12px; line-height:1.7}
+    .watermark{
+      position:fixed; inset:0; display:block !important; pointer-events:none;
+      opacity:.05; font-size:86px; font-weight:900; color:#002060;
+      transform:rotate(-18deg);
+      display:grid; place-items:center;
+    }
+  }
+  .printHeader, .watermark{ display:none; }
+
+  /* ===== Form controls ===== */
+  input, textarea, select{
+    width:100%;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:0;
+    padding:10px 10px;
+    color:var(--text);
+    outline:none;
+    font: inherit;
+    min-height:42px;
+  }
+  textarea{ min-height:84px; resize:vertical; }
+  select{ min-height:42px; }
+  input:focus, textarea:focus, select:focus{
+    border-color: rgba(0,179,255,.55);
+    box-shadow: 0 0 0 4px rgba(0,179,255,.18);
+  }
+  input::placeholder, textarea::placeholder{ color: rgba(232,238,252,.55); }
+  .printTitle{
+    font-weight:900; color:#fff; margin-bottom:10px;
+    border-bottom:2px solid rgba(255,255,255,.16); padding-bottom:8px;
+  }
+  .printGrid{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px 12px;
+    color:var(--muted);
+  }
+  .printGrid b{ color:#fff; }
+  .printHr{
+    border:none; border-top:1px solid rgba(255,255,255,.16);
+    margin:10px 0;
+  }
+  .signRow{
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:12px;
+  }
+  .signLine{
+    margin-top:10px; height:34px;
+    border-bottom:2px solid rgba(255,255,255,.35);
+  }
+  .subBox{
+    margin-top:12px; padding:10px 12px; border-radius:0;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.14);
+  }
+  /* ===== Print only selected form ===== */
+  body[data-print="loan"] .grid > *:not(#annex-forms){ display:none !important; }
+  body[data-print="loan"] #annex-forms .two > div:nth-child(2){ display:none !important; }
+  body[data-print="advance"] .grid > *:not(#annex-forms){ display:none !important; }
+  body[data-print="advance"] #annex-forms .two > div:nth-child(1){ display:none !important; }
+  @media print{
+    .printTitle{ color:#002060 !important; border-bottom:2px solid #002060 !important; }
+    .printGrid{ color:#111827 !important; }
+    .printGrid b{ color:#111827 !important; }
+    .signLine{ border-bottom:2px solid #111827 !important; }
+    .subBox{ border:1px solid #e5e7eb !important; background:#f9fafb !important; }
+  }
+
+
+  /* ===== Better checkbox / radio styling ===== */
+  .checkGrid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:8px;
+    margin-top:6px;
+  }
+  label.chk{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:0;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.04);
+    cursor:pointer;
+    user-select:none;
+    line-height:1.2;
+  }
+  label.chk:hover{
+    border-color: rgba(0,179,255,.35);
+    background:rgba(255,255,255,.06);
+  }
+  label.chk input[type="checkbox"],
+  label.chk input[type="radio"]{
+    width:18px; height:18px;
+    accent-color: rgba(0,179,255,.95);
+    flex:0 0 auto;
+  }
+  label.chk.small{
+    padding:8px 10px;
+    border-radius:0;
+  }
+  .m .inlineChecks{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:8px;
+    margin-top:6px;
+  }
+  @media (max-width: 520px){
+    .checkGrid, .m .inlineChecks{ grid-template-columns:1fr; }
+  }
+
+
+  @media (max-width: 520px){ .logoBubble{ width:108px; height:108px; } }
+
+  .centerTag{
+    display:block;
+    text-align:center;
+    font-weight:800;
+    letter-spacing:.2px;
+    color:var(--text);
+    margin:6px 0 0;
+  }
+
+
+  /* ===== Closing styled box ===== */
+  .closingBox{
+    margin-top: 12px;
+    padding: 18px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(0,179,255,.35);
+    background: linear-gradient(135deg, rgba(0,32,96,.26), rgba(0,179,255,.10));
+    box-shadow: 0 18px 60px rgba(0,0,0,.18);
+    text-align: center;
+  }
+  .closingTitle{
+    display:inline-block;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 900;
+    letter-spacing: .2px;
+    color: #fff;
+    background: rgba(112,173,71,.22);
+    border: 1px solid rgba(112,173,71,.38);
+    box-shadow: 0 10px 28px rgba(112,173,71,.14);
+    margin-bottom: 10px;
+  }
+  .closingText{
+    color: rgba(232,238,252,.92);
+    font-size: 15px;
+    line-height: 2.0;
+    font-weight: 700;
+  }
+  @media print{
+    .closingBox{
+      border: 2px solid #002060 !important;
+      background: #f8fafc !important;
+      box-shadow: none !important;
+    }
+    .closingTitle{
+      background: #e6f2ea !important;
+      border: 2px solid #2e7d32 !important;
+      color: #2e7d32 !important;
+      box-shadow: none !important;
+    }
+    .closingText{
+      color:#111827 !important;
+    }
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brandCard">
+      <div class="row">
+        <div class="kfuTag">
+          <div class="logoBubble" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANwAAABQCAYAAAByKBsiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAyIDc5LmYzNTRlZmM3MCwgMjAyMy8xMS8wOS0xMjowNTo1MyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI1LjUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYxRUY5MzVERDU0MDExRUVBNDQ2RjE3OTczMUQ3RkQwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYxRUY5MzVFRDU0MDExRUVBNDQ2RjE3OTczMUQ3RkQwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjFFRjkzNUJENTQwMTFFRUE0NDZGMTc5NzMxRDdGRDAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjFFRjkzNUNENTQwMTFFRUE0NDZGMTc5NzMxRDdGRDAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4KMIDmAABM/ElEQVR42ux9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" alt="شعار جامعة الملك فيصل" style="width:100%;height:100%;object-fit:contain;border-radius:0"/></div>
+          <div>
+            <div style="font-weight:900">جامعة الملك فيصل</div>
+            <div style="color:var(--muted); font-size:12px">عمادة شؤون الطلاب — وحدة ذوي الإعاقة</div>
+          </div>
+        </div>
+        <div style="text-align:left; color:var(--muted); font-size:12px">
+          اللجنة الدائمة لطلبة من الأشخاص ذوي الإعاقة<br/>
+          جلسة رقم (1) — 1447هـ
+        </div>
+      </div>
+      <h1>تقرير الموضوع الأول: دعم طلبة من الأشخاص ذوي الإعاقة</h1>
+      <div class="subtitle">
+        تقرير عن مدى توفير الجامعة للاحتياجات التعليمية والتربوية والأكاديمية والمكانية المناسبة، وآليات صرف الأجهزة والأدوات المساندة لهم.
+      </div>
+</div>
+
+    <div class="actions">
+      <button class="btn primary" onclick="printOfficial()">
+        ⬇︎ حفظ PDF (نسخة رسمية)
+      </button>
+      <button class="btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        ↑ أعلى الصفحة
+      </button>
+      <button class="btn" onclick="toggleCompact()">
+        ◻︎ وضع مختصر
+      </button>
+    </div>
+  </div>
+
+  <div class="printHeader">
+    <div class="phRow">
+      <div class="phBox" style="text-align:left" dir="ltr">
+        KINGDOM OF SAUDI ARABIA<br/>
+        Ministry of Education<br/>
+        KING FAISAL UNIVERSITY
+      </div>
+      <div class="phMid">
+        <span class="badge">K F U</span>
+      </div>
+      <div class="phBox" style="text-align:right" dir="rtl">
+        المملكة العربية السعودية<br/>
+        وزارة التعليم<br/>
+        جامعة الملك فيصل
+      </div>
+    </div>
+    <div class="pTitle">تقرير الموضوع الأول</div>
+    <div class="pSub">
+      تقرير عن مدى توفير الجامعة للاحتياجات التعليمية والتربوية والأكاديمية والمكانية المناسبة لطلبة من الأشخاص ذوي الإعاقة، وآليات صرف الأجهزة والأدوات المساندة لهم
+    </div>
+  </div>
+  <div class="watermark">KFU</div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>بيانات الجلسة</h2>
+      <div class="meta">
+        <div class="m"><b>اسم اللجنة</b><span>اللجنة الدائمة لطلبة من الأشخاص ذوي الإعاقة</span></div>
+        <div class="m"><b>رقم الجلسة</b><span>الجلسة رقم (1) للعام الجامعي 1447هـ</span></div>
+        <div class="m"><b>التاريخ</b><span>28 / 8 / 1447هـ — 16 / 2 / 2026م</span></div>
+        <div class="m"><b>الوقت والمكان</b><span>11:30 ص — قاعة مجلس الجامعة</span></div>
+        <div class="m"><b>الجهة مقدمة التقرير</b><span>عمادة شؤون الطلاب (وحدة ذوي الإعاقة)</span></div>
+        <div class="m"><b>الغرض</b><span>عرض مستوى توفير الاحتياجات + آلية صرف الأجهزة + مؤشرات الأداء + توصيات اللجنة</span></div>
+      </div>
+    </div>
+
+    <div class="card sec">
+      <h2>الملخص التنفيذي</h2>
+      <p>
+        يقدم هذا التقرير عرضًا تفصيليًا ومتكاملًا لمستوى توفير جامعة الملك فيصل للاحتياجات التعليمية والتربوية والأكاديمية والمكانية الداعمة لطلبة من الأشخاص ذوي الإعاقة،
+        مع توثيق آلية تشغيلية معيارية لصرف الأجهزة والأدوات المساندة لهم (من التقديم والتقييم والاعتماد، إلى الشراء/الإعارة والتسليم والتدريب والمتابعة والصيانة).
+        ويركّز التقرير على ضمان العدالة وتكافؤ الفرص، ورفع جودة الخدمة، وتحسين تجربة الطالب/الطالبة، وتعزيز الشراكة بين عمادة شؤون الطلاب والكليات والجهات الداعمة داخل الجامعة.
+      </p>
+    </div>
+
+    <div class="two">
+      <div class="card sec">
+        <h2>الخلفية والتنظيم</h2>
+        <p>
+          تعمل الجامعة على دعم الطلبة من الأشخاص ذوي الإعاقة ضمن منظومة مؤسسية تهدف إلى إزالة العوائق أمام التعلم والمشاركة الجامعية، وبما ينسجم مع الأنظمة الوطنية ومتطلبات الجودة.
+          وتضطلع وحدة ذوي الإعاقة بدور محوري في استقبال الطلبة وتقييم الاحتياج وإدارة المواءمات الأكاديمية ورفع التوصيات بشأن الأجهزة والأدوات المساندة وتنسيق المتابعة.
+        </p>
+      </div>
+      <div class="card sec">
+        <h2>أهداف التقرير</h2>
+        <ul>
+          <li>قياس مستوى توافر الاحتياجات التعليمية/التربوية/الأكاديمية لطلبة من الأشخاص ذوي الإعاقة.</li>
+          <li>عرض آلية صرف الأجهزة والأدوات المساندة بشكل موحّد يضمن الشفافية والعدالة وسرعة الإنجاز.</li>
+          <li>تحديد الأدوار والمسؤوليات بين الوحدة والكليات والجهات الداعمة.</li>
+          <li>اقتراح مؤشرات أداء (KPIs) للمتابعة والتحسين المستمر.</li>
+          <li>تقديم توصيات وقرارات جاهزة لاعتماد اللجنة.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card sec">
+      <h2>مستوى توفير الاحتياجات التعليمية والتربوية والأكاديمية</h2>
+      <p><b style="color:#fff">1) المواءمات الأكاديمية والاختبارات</b></p>
+      <ul>
+        <li>تمديد زمن الاختبار أو تقسيمه على فترات عند الحاجة وفق الضوابط.</li>
+        <li>توفير قاعة اختبار مناسبة (سهولة وصول/هدوء/سلامة).</li>
+        <li>تعديل طريقة عرض الأسئلة أو طريقة الإجابة بحسب الحالة ووفق الأنظمة.</li>
+        <li>تسهيلات للأنشطة العملية/الميدانية دون الإخلال بمخرجات التعلم.</li>
+        <li>توفير مقاعد/طاولات ملائمة أو أجهزة إدخال مناسبة داخل القاعة.</li>
+      </ul>
+      <p style="margin-top:12px"><b style="color:#fff">2) الوصول للمحتوى والتعلم الرقمي</b></p>
+      <ul>
+        <li>مساندة تحويل ملفات مختارة إلى صيغ قابلة للقراءة وتنظيم العناوين وتكبير الخط.</li>
+        <li>إرشادات لاستخدام أدوات الوصول المدمجة في أنظمة التشغيل والمنصات التعليمية.</li>
+        <li>التنسيق مع جهات التعليم الإلكتروني لتفعيل خيارات وصول مناسبة عند الحاجة.</li>
+        <li>قائمة تحقق للمحتوى الميسّر تُطبق على المقررات ذات الاعتماد العالي على المواد الرقمية.</li>
+      </ul>
+      <p style="margin-top:12px"><b style="color:#fff">3) الدعم الإرشادي والمتابعة</b></p>
+      <ul>
+        <li>مقابلة تقييم احتياج أولية/محدثة وبناء خطة متابعة للحالات ذات الاحتياج العالي.</li>
+        <li>قناة تواصل للحالات العاجلة أثناء الاختبارات.</li>
+        <li>توثيق التدخلات بما يضمن الخصوصية وسرية البيانات.</li>
+      </ul>
+    </div>
+
+    <div class="card sec">
+      <h2>التهيئة المكانية والبيئة الجامعية الداعمة</h2>
+      <p>
+        تشمل التهيئة المكانية: الممرات والمنحدرات، المصاعد، المواقف المخصصة، لوحات الإرشاد، تهيئة القاعات والمعامل عند الحاجة.
+        ويتم التعامل مع العوائق عبر بلاغات وتحديد أولويات وفق معيار الأثر (السلامة + الاستمرارية التعليمية + عدد المستفيدين).
+      </p>
+      <ul>
+        <li>مسح ميداني دوري للمرافق وتحديث قائمة الأولويات بالتنسيق مع الجهات المختصة.</li>
+        <li>تحديد قاعات مفضلة للاختبارات/المحاضرات لتقليل التنقل وتحسين الوصول.</li>
+        <li>نموذج بلاغات سريع (QR/نموذج) بعهد زمني للاستجابة.</li>
+      </ul>
+    </div>
+
+    <div class="card sec">
+      <h2>آلية صرف الأجهزة والأدوات المساندة (إجراء تشغيلي موحّد)</h2>
+      <p>
+        تعتمد الآلية على مسار واضح يبدأ بتقديم الطلب وينتهي بالتسليم والمتابعة؛ بهدف ضمان أن الجهاز/الأداة ترتبط مباشرة بالاحتياج التعليمي وتحقق أثرًا ملموسًا.
+      </p>
+      <ul>
+        <li><b>التقديم:</b> طلب + تقرير طبي حديث + بيانات أساسية + تصنيف أولي (عاجل/عادي/يتطلب دراسة).</li>
+        <li><b>التقييم:</b> تحديد العائق التعليمي + ربطه بالمقررات + تحديد المواصفات والبدائل.</li>
+        <li><b>الاعتماد:</b> توصية موثقة تُرفع للجنة/المفوض مع مبرر ونمط (إعارة/تمليك) وتقدير تكلفة.</li>
+        <li><b>التوفير:</b> شراء وفق الأنظمة أو إعارة من مخزون، مع حلول مرحلية عند التأخر.</li>
+        <li><b>التسليم والتدريب:</b> محضر استلام + تدريب/دليل مختصر + تسجيل الجهاز في قاعدة بيانات.</li>
+        <li><b>المتابعة والصيانة:</b> متابعة بعد 2–4 أسابيع + إدارة الضمان + تقييم أثر الصرف.</li>
+      </ul>
+    </div>
+
+    <div class="two">
+      <div class="card sec">
+        <h2>مؤشرات أداء مقترحة (KPIs)</h2>
+        <ul>
+          <li>متوسط زمن إنجاز الطلب (تقديم → تسليم): مستهدف 15–30 يومًا بحسب نوع الجهاز.</li>
+          <li>نسبة الطلبات المنجزة ضمن الزمن المستهدف: ≥ 80%.</li>
+          <li>رضا الطلبة عن الخدمة والأجهزة: ≥ 85%.</li>
+          <li>نسبة تطبيق المواءمات الأكاديمية المعتمدة داخل الكليات: ≥ 90%.</li>
+          <li>عدد الأجهزة المصروفة/المعارة حسب النوع + نسبة الأعطال + زمن الصيانة.</li>
+        </ul>
+      </div>
+      <div class="card sec">
+        <h2>تحديات وفجوات محتملة</h2>
+        <ul>
+          <li>طول دورة الشراء لبعض الأجهزة التخصصية مقارنة باحتياج الطالب خلال الفصل.</li>
+          <li>تفاوت جاهزية بعض القاعات أو المعامل من حيث التهيئة أو توفر بعض الأدوات.</li>
+          <li>الحاجة لتوحيد نماذج المواءمات وآليات التواصل بين الكليات لضمان السرعة والاتساق.</li>
+          <li>محدودية مخزون الإعارة المؤقتة للحالات العاجلة.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card sec">
+      <h2>توصيات وقرارات مقترحة لاعتماد اللجنة</h2>
+      <ol style="margin:10px 0 0; padding:0 18px 0 0; color:var(--muted); line-height:1.95">
+        <li>اعتماد آلية موحدة لصرف الأجهزة مع مدد زمنية مستهدفة ومسؤوليات واضحة لكل مرحلة.</li>
+        <li>تخصيص بند/سقف مالي سنوي للأجهزة والأدوات المساندة مع مراجعة دورية للاحتياج.</li>
+        <li>اعتماد نموذج مواءمات أكاديمية موحّد على مستوى الجامعة مع قناة إلكترونية للتنفيذ والتوثيق.</li>
+        <li>تعزيز مستودع إعارة للأجهزة الشائعة لتغطية الحالات العاجلة خلال فترات الاختبارات.</li>
+        <li>تكليف جهة فنية بمسح ميداني دوري لتحديد أولويات تهيئة المباني والمرافق ضمن خطة زمنية.</li>
+        <li>إقرار نموذج متابعة أثر للأجهزة المصروفة (بعد شهر) لضمان كفاءة الصرف وتعظيم الأثر.</li>
+      </ol>
+    </div>
+
+    
+    <!-- ====== الملحقات: نماذج ذكية ====== -->
+    <div class="card sec" id="annex-forms">
+      <h2>الملاحق: نماذج ذكية (قابلة للتعبئة والطباعة)</h2>
+      <p>
+        تم تضمين نموذجين تشغيليين: (1) محضر استعارة أجهزة وأدوات مساندة، (2) نموذج طلب سلفة/مساندة مالية مع مسار الاعتمادات.
+        يمكنك تعبئة الحقول ثم طباعة <b>النموذج فقط</b> بصيغة PDF من الأزرار داخل كل نموذج.
+      </p>
+
+      <div class="two" style="margin-top:12px">
+        <!-- Form 1 -->
+        <div class="card" style="box-shadow:none; background:rgba(255,255,255,.04)">
+          <h2 style="font-size:15px">نموذج (1): محضر استعارة أجهزة وأدوات مساندة</h2>
+
+          <div class="note" style="background:rgba(112,173,71,.12); border-color:rgba(112,173,71,.25); color:#f3fff0">
+            <b>تنبيه:</b> يتضمن النموذج تعهدًا بإرجاع العهدة بعد التخرج، ولا تُستكمل إجراءات التخرج إلا بعد تسليم العهدة وإغلاقها رسميًا.
+          </div>
+
+          <form id="loanForm" class="formWrap" autocomplete="on">
+            <div class="meta" style="grid-template-columns:1fr 1fr">
+              <div class="m"><b>تاريخ النموذج</b><span><input id="loanDate" type="date" aria-label="تاريخ النموذج"></span></div>
+              <div class="m"><b>الرقم الجامعي</b><span><input id="loanSid" type="text" inputmode="numeric" placeholder="مثال: 44xxxxxxx" aria-label="الرقم الجامعي"></span></div>
+              <div class="m"><b>اسم الطالب/ـة</b><span><input id="loanName" type="text" placeholder="الاسم الثلاثي" aria-label="اسم الطالب"></span></div>
+              <div class="m"><b>الكلية/القسم</b><span><input id="loanCollege" type="text" placeholder="الكلية - القسم" aria-label="الكلية والقسم"></span></div>
+              <div class="m"><b>رقم الجوال</b><span><input id="loanPhone" type="tel" placeholder="05xxxxxxxx" aria-label="رقم الجوال"></span></div>
+              <div class="m"><b>البريد الجامعي</b><span><input id="loanEmail" type="email" placeholder="name@kfu.edu.sa" aria-label="البريد الجامعي"></span></div>
+            </div>
+
+            <div class="meta" style="grid-template-columns:1fr 1fr; margin-top:10px">
+              <div class="m"><b>اسم الجهاز/الأداة</b><span><input id="devName" type="text" placeholder="مثال: جهاز تكبير/قارئ شاشة..." aria-label="اسم الجهاز"></span></div>
+              <div class="m"><b>العدد</b><span><input id="devQty" type="number" min="1" value="1" aria-label="العدد"></span></div>
+              <div class="m"><b>المواصفات/الموديل</b><span><input id="devModel" type="text" placeholder="Model / Specs" aria-label="المواصفات"></span></div>
+              <div class="m"><b>الرقم التسلسلي</b><span><input id="devSerial" type="text" placeholder="Serial No." aria-label="الرقم التسلسلي"></span></div>
+              <div class="m"><b>الملحقات</b><span><div class="checkGrid"><label class="chk"><input type="checkbox" id="accCharger" aria-label="ملحق شاحن"> شاحن</label> <label class="chk"><input type="checkbox" id="accBag" aria-label="ملحق حقيبة"> حقيبة</label> <label class="chk"><input type="checkbox" id="accCable" aria-label="ملحق كابلات"> كابلات</label> <label class="chk"><input type="checkbox" id="accLicense" aria-label="ملحق ترخيص أو برنامج"> ترخيص/برنامج</label></div></span></div>
+              <div class="m"><b>حالة الجهاز</b><span>
+                <select id="devCond" aria-label="حالة الجهاز">
+                  <option value="جديد">جديد</option>
+                  <option value="جيد جدًا">جيد جدًا</option>
+                  <option value="جيد">جيد</option>
+                  <option value="يحتاج صيانة بسيطة">يحتاج صيانة بسيطة</option>
+                </select>
+              </span></div>
+            </div>
+
+            <div class="m" style="margin-top:10px">
+              <b>ملاحظات</b>
+              <span><textarea id="loanNotes" rows="3" placeholder="أي ملاحظات أو تفاصيل عند التسليم..." aria-label="ملاحظات"></textarea></span>
+            </div>
+
+            <div class="m" style="margin-top:10px">
+              <b>التعهّد</b>
+              <span style="display:block; color:var(--muted); line-height:1.9">
+                أتعهد بالمحافظة على الجهاز/الأداة المساندة واستخدامها للأغراض الأكاديمية فقط، والالتزام بإعادتها إلى عهدة الجامعة عند التخرج
+                أو عند طلب وحدة ذوي الإعاقة أو عند انتهاء الحاجة. وأقرّ بأن أي تلف أو فقدان ناتج عن سوء استخدام أو إهمال يحمّلني المسؤولية وفق الأنظمة.
+                <b style="color:#fff">ولا يتم استكمال إجراءات التخرج/إخلاء الطرف النهائي إلا بعد تسليم العهدة وإغلاقها رسميًا.</b>
+              </span>
+              <span style="display:flex; gap:10px; align-items:center; margin-top:10px">
+                <label class="chk small"><input id="loanAgree" type="checkbox" aria-label="الموافقة على التعهد"> أوافق على التعهد أعلاه</label>
+              </span>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+              <button type="button" class="btn primary" onclick="printOnly('loanPrint')">طباعة النموذج (PDF)</button>
+              <button type="button" class="btn" onclick="fillLoanToday()">تعبئة تاريخ اليوم</button>
+              <button type="button" class="btn" onclick="togglePreview('loanPreview')">إظهار/إخفاء المعاينة</button>
+            </div>
+
+            <div id="loanPrint" class="printArea" style="margin-top:12px; padding:12px; border:1px dashed rgba(255,255,255,.18); border-radius:0; background:rgba(255,255,255,.03)">
+              <div class="printTitle">نموذج (1): محضر استعارة أجهزة وأدوات مساندة</div>
+              <div class="printGrid">
+                <div><b>تاريخ النموذج:</b> <span data-v="loanDate"></span></div>
+                <div><b>اسم الطالب/ـة:</b> <span data-v="loanName"></span></div>
+                <div><b>الرقم الجامعي:</b> <span data-v="loanSid"></span></div>
+                <div><b>الكلية/القسم:</b> <span data-v="loanCollege"></span></div>
+                <div><b>الجوال:</b> <span data-v="loanPhone"></span></div>
+                <div><b>البريد:</b> <span data-v="loanEmail"></span></div>
+              </div>
+              <hr class="printHr"/>
+              <div class="printGrid">
+                <div><b>الجهاز/الأداة:</b> <span data-v="devName"></span></div>
+                <div><b>العدد:</b> <span data-v="devQty"></span></div>
+                <div><b>المواصفات:</b> <span data-v="devModel"></span></div>
+                <div><b>الرقم التسلسلي:</b> <span data-v="devSerial"></span></div>
+                <div><b>الملحقات:</b> <span id="accOut"></span></div>
+                <div><b>الحالة:</b> <span data-v="devCond"></span></div>
+              </div>
+              <div style="margin-top:8px"><b>ملاحظات:</b> <span data-v="loanNotes"></span></div>
+              <div style="margin-top:10px; line-height:1.8">
+                <b>التعهّد:</b>
+                أتعهد بالمحافظة على الجهاز/الأداة المساندة واستخدامها للأغراض الأكاديمية فقط، والالتزام بإعادتها إلى عهدة الجامعة عند التخرج أو عند طلب الوحدة أو عند انتهاء الحاجة.
+                <b>ولا يتم استكمال إجراءات التخرج/إخلاء الطرف النهائي إلا بعد تسليم العهدة وإغلاقها رسميًا.</b>
+              </div>
+              <div class="signRow">
+                <div><b>توقيع الطالب/ـة</b><div class="signLine"></div></div>
+                <div><b>ممثل وحدة ذوي الإعاقة</b><div class="signLine"></div></div>
+                <div><b>ممثل العهد/المستودع</b><div class="signLine"></div></div>
+              </div>
+              <div class="stampBox"><b>الختم</b><div class="signLine" style="height:42px"></div></div>
+            </div>
+
+            <div id="loanPreview" class="note" style="display:none; margin-top:10px">
+              سيتم تحديث المعاينة تلقائيًا أثناء الكتابة. للطباعة اضغط <b>طباعة النموذج (PDF)</b>.
+            </div>
+          </form>
+        </div>
+
+        <!-- Form 2 -->
+        <div class="card" style="box-shadow:none; background:rgba(255,255,255,.04)">
+          <h2 style="font-size:15px">نموذج (2): طلب سلفة/مساندة مالية + مسار الاعتمادات</h2>
+
+          <form id="advanceForm" class="formWrap" autocomplete="on">
+            <div class="meta" style="grid-template-columns:1fr 1fr">
+              <div class="m"><b>تاريخ الطلب</b><span><input id="advDate" type="date" aria-label="تاريخ الطلب"></span></div>
+              <div class="m"><b>الرقم الجامعي</b><span><input id="advSid" type="text" inputmode="numeric" placeholder="44xxxxxxx" aria-label="الرقم الجامعي"></span></div>
+              <div class="m"><b>اسم الطالب/ـة</b><span><input id="advName" type="text" placeholder="الاسم الثلاثي" aria-label="اسم الطالب"></span></div>
+              <div class="m"><b>الكلية/التخصص</b><span><input id="advCollege" type="text" placeholder="الكلية - التخصص" aria-label="الكلية والتخصص"></span></div>
+              <div class="m"><b>المستوى الدراسي</b><span><input id="advLevel" type="text" placeholder="مثال: السابع" aria-label="المستوى الدراسي"></span></div>
+              <div class="m"><b>رقم الجوال</b><span><input id="advPhone" type="tel" placeholder="05xxxxxxxx" aria-label="رقم الجوال"></span></div>
+              <div class="m"><b>البريد الجامعي</b><span><input id="advEmail" type="email" placeholder="name@kfu.edu.sa" aria-label="البريد الجامعي"></span></div>
+              <div class="m"><b>نوع الطلب</b><span>
+                <select id="advType" aria-label="نوع الطلب">
+                  <option value="سلفة مالية">سلفة مالية</option>
+                  <option value="مساعدة/إعانة">مساعدة/إعانة</option>
+                  <option value="أخرى">أخرى</option>
+                </select>
+              </span></div>
+              <div class="m"><b>قيمة المبلغ المطلوب (ريال)</b><span><input id="advAmount" type="number" min="0" step="1" placeholder="0" aria-label="قيمة المبلغ"></span></div>
+              <div class="m"><b>الآيبان (اختياري)</b><span><input id="advIban" type="text" placeholder="IBAN" aria-label="الآيبان"></span></div>
+            </div>
+
+            <div class="m" style="margin-top:10px">
+              <b>سبب الطلب (وصف مختصر)</b>
+              <span><textarea id="advReason" rows="3" placeholder="اشرح الحالة الاجتماعية/الطبية بشكل موجز..." aria-label="سبب الطلب"></textarea></span>
+            </div>
+
+            <div class="m" style="margin-top:10px">
+              <b>المرفقات (اختر ما ينطبق)</b>
+              <span style="display:flex; flex-direction:column; gap:8px; padding-top:6px"><div class="checkGrid">
+                <label class="chk"><input type="checkbox" id="attSocial" aria-label="مرفق بيان الحالة الاجتماعية"> بيان بالحالة الاجتماعية + المستندات الداعمة</label>
+                <label class="chk"><input type="checkbox" id="attMedical" aria-label="مرفق تقرير طبي"> بيان/تقرير طبي + الأدلة</label>
+                <label class="chk"><input type="checkbox" id="attBills" aria-label="مرفق فواتير أو التزامات"> فواتير/إثبات التزامات (إن وجدت)</label>
+                <label class="chk"><input type="checkbox" id="attOther" aria-label="مرفقات أخرى"> مرفقات أخرى</label>
+              </div></span>
+            </div>
+
+            <div class="note" style="margin-top:10px">
+              <b>المسار الإجرائي:</b> تقديم لوحدة ذوي الإعاقة + مراجعة وتحقق + <b>توصية الوحدة أسفل الطلب بالسماح للطالب برفعه للصندوق الطلابي</b> +
+              مراجعة الصندوق + اعتماد نهائي من سعادة رئيس الصندوق + إشعار وصرف وفق الأنظمة.
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+              <button type="button" class="btn primary" onclick="printOnly('advPrint')">طباعة النموذج (PDF)</button>
+              <button type="button" class="btn" onclick="fillAdvToday()">تعبئة تاريخ اليوم</button>
+              <button type="button" class="btn" onclick="togglePreview('advPreview')">إظهار/إخفاء المعاينة</button>
+            </div>
+
+            <div id="advPrint" class="printArea" style="margin-top:12px; padding:12px; border:1px dashed rgba(255,255,255,.18); border-radius:0; background:rgba(255,255,255,.03)">
+              <div class="printTitle">نموذج (2): طلب سلفة/مساندة مالية (لطلبة من الأشخاص ذوي الإعاقة)</div>
+              <div class="printGrid">
+                <div><b>تاريخ الطلب:</b> <span data-v="advDate"></span></div>
+                <div><b>اسم الطالب/ـة:</b> <span data-v="advName"></span></div>
+                <div><b>الرقم الجامعي:</b> <span data-v="advSid"></span></div>
+                <div><b>الكلية/التخصص:</b> <span data-v="advCollege"></span></div>
+                <div><b>المستوى:</b> <span data-v="advLevel"></span></div>
+                <div><b>الجوال:</b> <span data-v="advPhone"></span></div>
+                <div><b>البريد:</b> <span data-v="advEmail"></span></div>
+                <div><b>نوع الطلب:</b> <span data-v="advType"></span></div>
+                <div><b>المبلغ:</b> <span data-v="advAmount"></span> ريال</div>
+                <div><b>الآيبان:</b> <span data-v="advIban"></span></div>
+              </div>
+              <hr class="printHr"/>
+              <div><b>سبب الطلب:</b> <span data-v="advReason"></span></div>
+              <div style="margin-top:8px"><b>المرفقات:</b> <span id="attOut"></span></div>
+
+              <div class="subBox">
+                <b>توصية وحدة ذوي الإعاقة</b>
+                <div style="margin-top:6px; line-height:1.8">
+                  بعد مراجعة وحدة ذوي الإعاقة والتحقق من اكتمال المرفقات وصحة المعلومات:
+<div class="inlineChecks" style="margin-top:8px">
+  <label class="chk small"><input type="radio" name="unitRec" aria-label="توصية الوحدة نوصي"> نوصي</label>
+  <label class="chk small"><input type="radio" name="unitRec" aria-label="توصية الوحدة لا نوصي"> لا نوصي</label>
+</div>
+                  بالسماح للطالب/ـة برفع الطلب للصندوق الطلابي لمراجعة الحالة واعتمادها.
+                </div>
+                <div class="signRow" style="margin-top:10px">
+                  <div><b>اسم ممثل الوحدة</b><div class="signLine"></div></div>
+                  <div><b>التوقيع</b><div class="signLine"></div></div>
+                  <div><b>الختم</b><div class="signLine" style="height:42px"></div></div>
+                </div>
+              </div>
+
+              <div class="subBox">
+                <b>الصندوق الطلابي (مراجعة واعتماد)</b>
+                <div class="printGrid" style="margin-top:8px">
+                  <div><b>نتيجة الدراسة:</b>
+  <div class="inlineChecks" style="margin-top:8px">
+    <label class="chk small"><input type="radio" name="fundRes" aria-label="نتيجة الدراسة موافقة"> موافقة</label>
+    <label class="chk small"><input type="radio" name="fundRes" aria-label="نتيجة الدراسة اعتذار"> اعتذار</label>
+    <label class="chk small"><input type="radio" name="fundRes" aria-label="نتيجة الدراسة تأجيل أو استكمال"> تأجيل/استكمال</label>
+  </div>
+</div>
+                  <div><b>قيمة الاعتماد النهائي:</b> ............ ريال</div>
+                  <div><b>موافقة سعادة رئيس الصندوق:</b> الاسم: ............ التوقيع: ............</div>
+                  <div><b>تاريخ الاعتماد:</b> ____/____/20__</div>
+                  <div><b>بيانات الصرف:</b> رقم العملية/السند: ............</div>
+                  <div><b>تاريخ الصرف:</b> ____/____/20__</div>
+                </div>
+              </div>
+
+              <div class="signRow">
+                <div><b>توقيع الطالب/ـة</b><div class="signLine"></div></div>
+                <div><b>اسم الطالب/ـة</b><div class="signLine"></div></div>
+              </div>
+            </div>
+
+            <div id="advPreview" class="note" style="display:none; margin-top:10px">
+              سيتم تحديث المعاينة تلقائيًا أثناء الكتابة. للطباعة اضغط <b>طباعة النموذج (PDF)</b>.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+<div class="closingBox" role="note" aria-label="ختامًا">
+  <div class="closingTitle">ختامًا</div>
+  <div class="closingText">
+    تؤكد عمادة شؤون الطلاب التزامها بتطوير منظومة دعم الطلبة من الأشخاص ذوي الإعاقة، وتعزيز جودة الخدمات المقدمة لهم، بما يضمن تكافؤ الفرص وتحسين مخرجات التعلم ورفع الرضا.
+  </div>
+</div>
+
+      <div class="foot">
+        <div>إعداد: وحدة ذوي الإعاقة — عمادة شؤون الطلاب — جامعة الملك فيصل</div>
+        <div class="hint"><span class="centerTag">د.محمد عبد الحميد زايد — المشرف العام على وحدتي الجودة وذوي الإعاقة</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let compact = false;
+  function toggleCompact(){
+    compact = !compact;
+    document.documentElement.style.setProperty('--radius', compact ? '12px' : '18px');
+    document.querySelectorAll('.card').forEach(c => c.style.padding = compact ? '12px 12px' : '16px 16px');
+  }
+  function printOfficial(){
+    document.title = "تقرير الموضوع الأول - نسخة رسمية للطباعة (KFU)";
+    window.print();
+    setTimeout(()=>{ document.title = "تقرير الموضوع الأول | دعم طلبة من الأشخاص ذوي الإعاقة - جامعة الملك فيصل"; }, 500);
+  }
+</script>
+
+<script>
+  function bindLive(){
+    const $ = (id) => document.getElementById(id);
+    const set = (key, val) => document.querySelectorAll(`[data-v="${key}"]`).forEach(n => n.textContent = (val && String(val).trim()) ? val : "—");
+    function accessoriesText(){
+      const list = [];
+      if($('#accCharger')?.checked) list.push('شاحن');
+      if($('#accBag')?.checked) list.push('حقيبة');
+      if($('#accCable')?.checked) list.push('كابلات');
+      if($('#accLicense')?.checked) list.push('ترخيص/برنامج');
+      return list.length ? list.join('، ') : '—';
+    }
+    function attachmentsText(){
+      const list = [];
+      if($('#attSocial')?.checked) list.push('بيان اجتماعي');
+      if($('#attMedical')?.checked) list.push('تقرير طبي');
+      if($('#attBills')?.checked) list.push('فواتير/التزامات');
+      if($('#attOther')?.checked) list.push('مرفقات أخرى');
+      return list.length ? list.join('، ') : '—';
+    }
+    const ids = ['loanDate','loanSid','loanName','loanCollege','loanPhone','loanEmail','devName','devQty','devModel','devSerial','devCond','loanNotes',
+                 'advDate','advSid','advName','advCollege','advLevel','advPhone','advEmail','advType','advAmount','advIban','advReason'];
+    ids.forEach(id=>{
+      const el = $(id); if(!el) return;
+      const upd = ()=> set(id, el.value);
+      el.addEventListener('input', upd);
+      el.addEventListener('change', upd);
+      upd();
+    });
+    ['accCharger','accBag','accCable','accLicense'].forEach(id=>{
+      const el = $(id); if(!el) return;
+      const upd = ()=>{ const out = document.getElementById('accOut'); if(out) out.textContent = accessoriesText(); };
+      el.addEventListener('change', upd); upd();
+    });
+    ['attSocial','attMedical','attBills','attOther'].forEach(id=>{
+      const el = $(id); if(!el) return;
+      const upd = ()=>{ const out = document.getElementById('attOut'); if(out) out.textContent = attachmentsText(); };
+      el.addEventListener('change', upd); upd();
+    });
+  }
+  function fillLoanToday(){ const el = document.getElementById('loanDate'); if(el){ el.valueAsDate = new Date(); el.dispatchEvent(new Event('change')); } }
+  function fillAdvToday(){ const el = document.getElementById('advDate'); if(el){ el.valueAsDate = new Date(); el.dispatchEvent(new Event('change')); } }
+  function togglePreview(id){ const el = document.getElementById(id); if(!el) return; el.style.display = (el.style.display === 'none' || !el.style.display) ? 'block' : 'none'; }
+  function printOnly(which){
+    if(which === 'loanPrint') document.body.setAttribute('data-print','loan');
+    else if(which === 'advPrint') document.body.setAttribute('data-print','advance');
+    else document.body.removeAttribute('data-print');
+    window.print();
+    setTimeout(()=>{ document.body.removeAttribute('data-print'); }, 500);
+  }
+  window.addEventListener('DOMContentLoaded', bindLive);
+</script>
+
+</body>
+</html>
